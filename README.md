@@ -11,8 +11,16 @@
 - physic games:
 -- magnetic attraction
 -- invert of gravity
--- control other characters/ennemy with control device
--- real world movie type and then game enters the real world when break something...
+- control other characters/ennemy with control device
+- real world movie type and then game enters the real world when break something...
+- speak in chti and subtiltes are in good french
+- story AI in real world but need to go back in virtual world but does not know
+- starts with the need to get coffee and can only get it at the end and not a must in the game but give a good bonus
+- need to put 80's references:
+-- skynet
+-- goonies
+
+
 ## software
 
 - Engine to use:
