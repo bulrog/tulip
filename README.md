@@ -8,8 +8,15 @@
 - a level can inherit another level and can add or remove elemtent (or group of elements so need grouping as well).
 - between levels can add stories so can do a story mode
 - people can share their levels
-
-
+- physic games:
+-- magnetic attraction
+-- invert of gravity
+-- control other characters/ennemy with control device
+-- real world movie type and then game enters the real world when break something...
 ## software
 
-To review GameSalad
+- Engine to use:
+-- To review GameSalad -> expensive if wants to deploy to phone so to review godot/unity
+-- godot: could deploy on android after generating debug and release keys and downloading the godot template (850MB) so seems to work
+-- godot also allows to play video in ogv and I was able to do so with video editor to convert a mp4 and then run it on my PC so looks good as well
+-- still to review for point and click engine as some on top of godot.
