@@ -2,6 +2,9 @@
 
 ## ideas
 
+- plot of the game is about information: predict everything by knowing everything and control the world
+- hacking game with learning programming
+- manage 2 characters and 1 is good and 1 is bad and 1 tries to block the other
 - not too many graphism but do them myselves
 - level editors on the phone
 - from a level can go to different levels
