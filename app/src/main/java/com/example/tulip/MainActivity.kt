@@ -16,12 +16,10 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var timer: Timer
-    lateinit var promptText: TextView
-    var promptVisible = false
-    lateinit var mediaPlayer:MediaPlayer
-
     val handler: Handler = Handler(Looper.getMainLooper())
+    lateinit var timer: Timer
+    lateinit var mediaPlayer:MediaPlayer
+    var promptVisible = false
     fun initializeTimerTask() :TimerTask{
         return object : TimerTask() {
 
@@ -36,7 +34,8 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
-                    val oldText = promptText.text
+                    val promptText = findViewById<TextView>(R.id.consolePrompt)
+                    val oldText=promptText.text
                     if (promptVisible) {
                         promptText.text = oldText?.dropLast(1)
                         promptVisible = false
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         window.decorView.setBackgroundColor(Color.BLACK)
         setContentView(R.layout.console)
-        promptText = findViewById<TextView>(R.id.consolePrompt).apply {
+        val promptText=findViewById<TextView>(R.id.consolePrompt).apply {
             setTextColor(Color.GREEN)
             text = ">"
         }
@@ -67,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.input_text).apply {
             setText("")
             doOnTextChanged { text, start, before, count ->
-
                 mediaPlayer.start()
                 if (promptVisible) {
                     promptText.text = ">${text}_"
