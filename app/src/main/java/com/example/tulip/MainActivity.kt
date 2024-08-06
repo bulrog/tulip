@@ -6,6 +6,9 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
@@ -14,7 +17,7 @@ import androidx.core.widget.doOnTextChanged
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : TextView.OnEditorActionListener,AppCompatActivity() {
 
     val handler: Handler = Handler(Looper.getMainLooper())
     lateinit var timer: Timer
@@ -51,6 +54,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun getPrompt():String{
+        if (promptVisible){
+            return "_"
+        }
+        return ""
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -67,14 +76,29 @@ class MainActivity : AppCompatActivity() {
             setText("")
             doOnTextChanged { text, start, before, count ->
                 mediaPlayer.start()
-                if (promptVisible) {
-                    promptText.text = ">${text}_"
-                } else promptText.text = ">$text"
+                promptText.text = ">${text}${getPrompt()}"
+
             }
+            setOnEditorActionListener(this@MainActivity)
+
+
         }
         timer = Timer().apply {  schedule(initializeTimerTask(), 0, 500)}
 
 
+    }
+
+    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+         if ((actionId and EditorInfo.IME_MASK_ACTION)!=0){
+             val input=findViewById<EditText>(R.id.input_text)
+             val output=findViewById<TextView>(R.id.consolePrompt)
+             val inputBefore=output.text
+             val command=input.text.toString()
+             input.setText("")
+             output.text="$inputBefore\n${CommandExecutor().execute(command)}${getPrompt()}"
+             return true
+        }
+        return false
     }
 
     override fun onDestroy() {
